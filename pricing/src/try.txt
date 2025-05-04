@@ -1,0 +1,34 @@
+<div className="table-container">
+          {loading ? (
+            <div className="loading">Loading data...</div>
+          ) : error ? (
+            <div className="error">Error: {error}</div>
+          ) : filteredData.length === 0 ? (
+            <div className="no-data">No matching records found</div>
+          ) : (
+            <table className="pricing-table">
+              <thead>
+                <tr>
+                  <th>Article No.</th>
+                  <th>Product/Service</th>
+                  <th>Price</th>
+                  <th>In Price</th>
+                  <th>In Stock</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredData.map((item) => (
+                  <tr key={item.article_no}>
+                    <td>{item.article_no}</td>
+                    <td>{item.product_service}</td>
+                    <td>${item.price?.toFixed(2)}</td>
+                    <td>${item.inprice?.toFixed(2)}</td>
+                    <td>{item.instock}</td>
+                    <td>{item.description}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
